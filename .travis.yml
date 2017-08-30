@@ -1,0 +1,31 @@
+language:
+- cpp
+dist:
+- trusty
+compiler:
+- gcc
+- clang
+before_install:
+- wget -nv -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+- sudo apt-add-repository -y 'deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-4.0 main'
+- sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+- sudo apt-get -qq update
+install:
+- sudo apt-get install -qq -y g++-7
+- which g++
+- g++ --version
+- sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
+- which g++
+- g++ --version
+- which clang++
+- clang++ --version
+- sudo apt-get install -qq -y clang-4.0
+- sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-4.0 100
+- sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-4.0 100
+- which clang++
+- clang++ --version
+- clang++-4.0 --version
+script:
+- make clean all V=1 CC=${CC} CXX=${CXX}
+after_success:
+- bin/hello_world
