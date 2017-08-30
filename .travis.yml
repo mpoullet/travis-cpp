@@ -17,9 +17,11 @@ install:
 - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
 - which g++
 - g++ --version
+- g++-7 --version
 - which clang++
 - clang++ --version
 - sudo apt-get install -qq -y clang-4.0
+- export PATH=$(echo $PATH | sed -e 's/\/usr\/local\/clang-3.5.0\/bin://')
 - sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-4.0 100
 - sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-4.0 100
 - which clang++
