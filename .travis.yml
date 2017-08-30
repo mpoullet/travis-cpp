@@ -28,6 +28,7 @@ install:
 - clang++ -dumpversion
 - clang++-4.0 -dumpversion
 script:
+- echo "Using ${CXX} version $(${CXX} -dumpversion)"
 - make clean all V=1 CC=${CC} CXX=${CXX}
 after_success:
 - bin/hello_world
